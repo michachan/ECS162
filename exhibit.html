@@ -6,8 +6,19 @@
 	<meta name="description" content="Assignment #2">
 	<meta name="author" content="Michael Chan">
 	<link rel="stylesheet" type="text/css" href="exhibit.css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
 	<!-- Copyright (c) 2018 Michael Chan, All rights reserved unless otherwise stated -->
+	<script type="text/javascript">
+	function setBig(image){
+		var source = image.getAttribute('src');
+		var details = image.getAttribute('title');
+		var title = details.split('|');
+		let artName = title[0];
+		let artStyle = title[1];
+		let temp = `<img src='${source}'><div class='large-caption'><b>${artName}</b> <i>${artStyle}</i></div>`;
+		document.getElementById('right-main').innerHTML = temp;
+	}
+	</script>
 </head>
 <body>
 	<div id="header">
@@ -37,15 +48,26 @@
 		</div>
 	</div>
 	<div id="bottom-bar">
-		<img src="exhibitAssets/Wind Toys, 1962. oil on canvas.jpg" />
-		<img src="exhibitAssets/Pancake Breakfast, 2008. oil on canvas.jpg" />
-		<img src="exhibitAssets/Around the Cake, 1962, oil on canvas.jpg" />
-		<img src="exhibitAssets/Three Machines, 1963. oil on canvas.jpg" />
-		<img src="exhibitAssets/Boston Creems, 1962. oil on canvas.jpg" />
-		<img src="exhibitAssets/Bananas, 1963. Oil on canvas.jpg" />
+		<img onclick="setBig(this)" src="exhibitAssets/Wind Toys, 1962. oil on canvas.jpg" title="Wind Toys|(1962. oil on canvas)"/>
+		<img onclick="setBig(this)" src="exhibitAssets/Pancake Breakfast, 2008. oil on canvas.jpg" title="Pancake Breakfast|(2008. oil on canvas)"/>
+		<img onclick="setBig(this)" src="exhibitAssets/Around the Cake, 1962, oil on canvas.jpg" title="Around the Cake|(1962. oil on canvas)"/>
+		<img onclick="setBig(this)" src="exhibitAssets/Three Machines, 1963. oil on canvas.jpg" title="Three Machines|(1963. oil on canvas)"/>
+		<img onclick="setBig(this)" src="exhibitAssets/Boston Creems, 1962. oil on canvas.jpg" title="Boston Creems|(1962. oil on canvas)"/>
+		<img onclick="setBig(this)" src="exhibitAssets/Bananas, 1963. Oil on canvas.jpg" title="Bananas|(1963. oil on canvas)"/>
 	</div>
-	<img src="exhibitAssets/demo.png" />
 	<div id="footer">
+		<div id="footer-left">
+		<p><b>Manetti Shrem Museum</b></p>
+		<p>254 Old Davis Rd<br />
+		Davis, CA 95616<br />
+		(530) 752-8500</p>
+		</div>
+		<div id="footer-right">
+		<p><b>Hours</b></p>
+		<p>Closed Monday<br />
+		Open Tuesday-Friday 12 am - 6 pm<br />
+		Open Saturday-Sunday 11 am - 5 pm</p>
+		</div>
 	</div>
 </body>
 </html>

@@ -29,9 +29,20 @@ a.active {
 #bottom-bar {
 	display:flex;
 	flex-direction:row;
+	padding-bottom: 2px;
 }
 #bottom-bar img {
-	flex: 20%;
+	flex: 1 0 16%;
+	padding: 2px;
+}
+#bottom-bar img:last-child {
+	padding-right: 0;
+}
+#bottom-bar img:first-child {
+	padding-left: 0;
+}
+#footer-left {
+	padding-left: 3%;
 }
 #main {
 	background-color:#fff;
@@ -49,7 +60,16 @@ a.active {
 	line-height: 1.8em;
 }
 #footer {
-	
+	background-color:#e8ab9e;
+	color: #fff;
+	display:flex;
+	align-items:center;
+	flex-direction: row;
+	justify-content: space-between;
+	padding:0;
+	padding-top: 20px;
+	font-size: 0.9em;
+	font-weight:500;
 }
 #top-menu {
 	text-transform: uppercase;
@@ -71,7 +91,9 @@ a.active {
 	justify-content: flex-start;
 	min-width:20%;
 }
-
+.large-caption {
+	padding: 8px 0;
+}
 
 h1.title {
 	font-weight:700;
