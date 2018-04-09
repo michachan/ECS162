@@ -1,0 +1,98 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+	<title>Wayne Thiebaud</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Assignment #2">
+	<meta name="author" content="Michael Chan">
+	<link rel="stylesheet" type="text/css" href="exhibit.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+	<!-- Copyright (c) 2018 Michael Chan, All rights reserved unless otherwise stated -->
+	<script type="text/javascript">
+	function setBig(image){
+		var source = image.getAttribute('src');
+		var details = image.getAttribute('title');
+		var title = details.split('|');
+		let artName = title[0];
+		let artStyle = title[1];
+		let temp = `<img src='${source}'><div class='large-caption'><b>${artName}</b> <i>${artStyle}</i></div>`;
+		document.getElementById('right-main').innerHTML = temp;
+	}
+	</script>
+</head>
+<body>
+	<div id="header">
+		<div id="exhibitName">
+			<h1 class="title">Wayne Thiebaud</h3>
+			<h3 class="subtitle">Exhibition at Manetti Shrem Museum</h2>
+		</div>
+		<div id="top-menu">
+			<ul>
+				<li><a class="active" href="javascript:;">Home</a></li>
+				<li><a href="javascript:;">About</a></li>
+				<li><a href="javascript:;">Contact</a></li>
+			</ul>
+		</div>
+	</div> <!-- header -->
+	<div id="main">
+		<div id="left-main">
+			<p id="tagline"><b>Open until May 13</b>
+			<span class="magic"> | </span>
+			free to the public</p>
+			<hr class="small-hr" align="left"/>
+			<p class="description">At an extraordinary historical moment, Wayne Thiebaud proposed a radical new take on painting, and he did so with a slice of pie. This exhibition invites viewers to trace Thiebaud's emergence as a mature artist with singular style. The first exhibition to explore this formative period, Wayne Thiebaud | 1958-1968 brings together more than 60 early paintings gathered from private collections and museums throughout the United States.</p>
+		</div>
+    <div id="main2">
+		<div id="right-main">
+            <div id="right-main2">
+			<img src="exhibitAssets/Wind Toys, 1962. oil on canvas.jpg" style="width:450px; height:350px"/>
+			<div class="large-caption"><b>Wind Toys</b> <i>(1962. oil on canvas)</i></div>
+            </div>
+            
+        <div id="right-main2">
+		<img src="exhibitAssets/Pancake Breakfast, 2008. oil on canvas.jpg" title="Pancake Breakfast|(2008. oil on canvas)" style="width:450px; height:350px"/>
+        <div class="large-caption"><b>Pancake Breakfast</b> <i>(2008. oil on canvas)</i></div>
+        </div>
+        </div>
+        <div id="right-main">
+        <div id="right-main2">
+
+		<img src="exhibitAssets/Around the Cake, 1962, oil on canvas.jpg" title="Around the Cake|(1962. oil on canvas)" style="width:450px; height:350px"/>
+        <div class="large-caption"><b>Around the Cake</b> <i>(1962. oil on canvas)</i></div>
+        </div>
+        <div id="right-main2">
+		<img src="exhibitAssets/Three Machines, 1963. oil on canvas.jpg" title="Three Machines|(1963. oil on canvas)" style="width:450px; height:350px"/>
+        <div class="large-caption"><b>Three Machines</b> <i>(1963. oil on canvas)</i></div>
+        </div>
+        </div>
+        <div id="right-main">
+        <div id="right-main2">
+		<img src="exhibitAssets/Boston Creems, 1962. oil on canvas.jpg" title="Boston Creems|(1962. oil on canvas)" style="width:450px; height:350px"/>
+        <div class="large-caption"><b>Boston Cremes</b> <i>(1962. oil on canvas)</i></div>
+        </div>
+        <div id="right-main2">
+        <img src="exhibitAssets/Bananas, 1963. Oil on canvas.jpg" title="Bananas|(1963. oil on canvas)" style="width:450px; height:350px"/>
+        <div class="large-caption"><b>Bananas</b> <i>(1963. oil on canvas)</i></div>
+        </div>
+        </div>
+	</div>
+    </div>
+	<div id="footer">
+		<div id="footer-left">
+		<p><b>Manetti Shrem Museum</b></p>
+        <br>
+		<p>254 Old Davis Rd<br />
+		Davis, CA 95616<br />
+		(530) 752-8500</p>
+		</div>
+        <br>
+		<div id="footer-right">
+		<p><b>Hours</b></p>
+        <br>
+		<p>Closed Monday<br />
+		Open Tuesday-Friday 12 am - 6 pm<br />
+		Open Saturday-Sunday 11 am - 5 pm</p>
+		</div>
+	</div>
+</body>
+</html>
