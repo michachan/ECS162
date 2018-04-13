@@ -26,6 +26,7 @@ a.active {
 }
 .small-hr {
 	width:7%;
+	margin-left:0;
 }
 #bottom-bar {
 	display:flex;
