@@ -20,6 +20,8 @@ html {
 	display:flex;
 	flex-direction:column;
 	font-size:1.5em;
+    overflow: hidden;
+    white-space: nowrap;
 }
 a.active {
 	font-weight:700;
@@ -49,14 +51,16 @@ img {
 }
 #footer-left {
 	padding-left: 3%;
-	padding-right:1%;
-	flex:0 0 30%;
+	padding-right:%;
+	flex:0 1 30%;
 }
 #footer-right {
-	flex:0 0 40%;
+	flex:0 1 40%;
 }
 #container-1 {
 	display:flex;
+    margin-right: 2%;
+    flex: 0 1 auto;
 }
 #right-main .img-container {
 	width:100%;
@@ -74,12 +78,13 @@ img {
 	padding: 3%;
 	flex:1 1 30%;
 }
+
 #right-main {
 	flex:1 1 70%;
 	padding-right:1%;
 }
 .description {
-	line-height: 1.8em;
+	line-height: 1.2em;
 	font-size:1.25em;
 	font-weight:300;
 }
@@ -132,6 +137,8 @@ h1.title {
 	text-transform:uppercase;
 	margin-bottom:0;
 	font-size:3em;
+    overflow: hidden;
+    white-space: nowrap;
 }
 h3.subtitle {
 	font-weight:400;
@@ -178,6 +185,8 @@ body {
 	}
 	.date {padding-bottom:3%}
 	.date,.art-title {display:flex}
+    #footer-left { padding-right:6%}
+    
 }
 @media screen and (max-width:415px) {
 	#header {flex-direction: column-reverse;}
@@ -187,7 +196,7 @@ body {
 	h1.title {font-size:1.8em;}
 	h3.subtitle {font-size:0.85em;}
 	#main {flex-direction:column}
-	#tagline {text-align:center;display:inline;font-size:0.85em}
+	#tagline {text-align:center;display:inline;font-size:0.85em; }
 	#container-1 {width:100%}
 	.small-hr {display:none}
 	.magic {display:inline}
