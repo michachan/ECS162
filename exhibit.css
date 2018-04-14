@@ -186,7 +186,7 @@ body {
 	.date {padding-bottom:3%}
 	.date,.art-title {display:flex}
     #footer-left { padding-right:6%}
-    
+    #bottom-bar .img-container {padding-bottom: 2%}
 }
 @media screen and (max-width:415px) {
 	#header {flex-direction: column-reverse;}
@@ -205,12 +205,12 @@ body {
 	#top-menu li {font-size: 0.8em;}
 	#container-2 {max-width:100%}
 	#bottom-bar .img-container {flex:1 1 100%}
+    #right
+    #right
 	.date, .art-title {display:inline-flex}
 	.art-title {font-size:.82em;}
 	.date {font-size:.72em;}
 	#footer {flex-direction:column;align-items:flex-start;padding-bottom:20px;}
-	#footer-left,#footer-right {
-		flex:1 1 100%;
-		padding-left:5%;
-	}
+	#footer-left,#footer-right {flex:1 1 100%; padding-left:5%;}
+        #bottom-bar .img-container {padding-bottom: 2.7%}
 }
