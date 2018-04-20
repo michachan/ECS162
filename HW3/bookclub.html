@@ -17,34 +17,37 @@
 
 
 <main>
-    <h2>Search for a book by...</h2>
-<br>
-<div>
-    
-    <span class="input"> 
-        <span class="input-title"> Author </span>
-        <br>
-        <input id="author" placeholder="ex William Shakespeare">
-    </span>
 
-    <span class="input"><b> or </b></span>
-    
-    <span class="input">
-        <span class="input-title"> Title </span>
-        <br>
-        <input id="title" placeholder="ex Romeo and Juliet">
-    </span>
+<div id="search">
+	<div id="row-1">
+		<h2>Search for a book by...</h2>
+	</div>
+	<div id="row-2">
+		<span class="input"> 
+				<span class="input-title"> Author </span>
+				<input id="author" placeholder="ex William Shakespeare">
+		</span>
 
-    <span class="input"><b> or </b></span>
-    
-    <span class="input">
-        <span class="input-title"> ISBN </span>
-        <br>
-        <input id="isbn" placeholder="ex 000-0-00-000000-0"> 
-    </span>
+		<span class="col-2"><b> or </b></span>
+		
+		<span class="input">
+			<span class="input-title"> Title </span>
+			<input id="title" placeholder="ex Romeo and Juliet">
+		</span>
+
+		<span class="col-2"><b> or </b></span>
+		
+		<span class="input">
+			<span class="input-title"> ISBN </span>
+			<input id="isbn" placeholder="ex 000-0-00-000000-0"> 
+		</span>
+	</div>
+	<div id="row-3">
+		<button onclick="newRequest()">Search</button>
+	</div>
 </div>
-    
-<button onclick="newRequest()">submit</button>
+
+
 
 
 <div id="bookDisplay">
