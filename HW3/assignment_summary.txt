@@ -1,0 +1,4 @@
+Overlay popup that user can pick book from array for book list
+Search returns nothing, popup should say that
+Otherwise, we start with first book in array
+
