@@ -7,6 +7,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	color: blue;
+    
      }
 
 header {
@@ -18,12 +19,21 @@ header {
 
 h1 {
    font-size: x-large;
-   font-weight: light;
+   font-weight: 700;
+    text-align:left
+    
+}
+
+h2{
+    color: black;
+    font-weight: 300;
 }
 
 
 main {
      flex: 1 0 auto;  /* the sticky footer trick without the footer */
+    padding-left: 10%;
+    padding-top: 3%;
 }
 
 
@@ -31,6 +41,13 @@ input {
 	border-style: solid;
 	border-radius: 5px;
 	font-size: medium;
+    max-width: 175px;
+    padding: 5px;
+}
+
+.input {
+    display: inline;
+    margin: 0 3px;
 }
 
 

@@ -6,34 +6,57 @@
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" type="text/css" href="reset.css">
 <link rel="stylesheet" type="text/css" href="bookclub.css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet"> 
 </head>
 
 <body>
 
-	<header>
-		<div id="overlay"><b></div>
-		<h1>Book List</h1>
-		</header>
+<header>
+<h1>BOOK CLUB</h1>
+</header>
 
 
-		<main>
-		Search for a book:
-		<br>
-		<input id="title" placeholder="title"> <input id="author" placeholder="author">
-		<input id="isbn" placeholder="XXXXXXXXXX or XXX-XXXXXXXXXX"> 		<button onclick="newRequest()">submit</button>
+<main>
+    <h2>Search for a book by...</h2>
+<br>
+<div>
+    
+    <span class="input"> 
+        <span class="input-title"> Author </span>
+        <br>
+        <input id="author" placeholder="ex William Shakespeare">
+    </span>
+
+    <span class="input"><b> or </b></span>
+    
+    <span class="input">
+        <span class="input-title"> Title </span>
+        <br>
+        <input id="title" placeholder="ex Romeo and Juliet">
+    </span>
+
+    <span class="input"><b> or </b></span>
+    
+    <span class="input">
+        <span class="input-title"> ISBN </span>
+        <br>
+        <input id="isbn" placeholder="ex 000-0-00-000000-0"> 
+    </span>
+</div>
+    
+<button onclick="newRequest()">submit</button>
 
 
-		<div id="bookDisplay">
-		</div>
+<div id="bookDisplay">
+</div>
 
-		</main>
+</main>
 
-		<!-- The Javascript for this page -->
-		<script src="bookclub.js"> </script>
+<!-- The Javascript for this page -->
+<script src="bookclub.js"> </script>
 
-		<!-- The JSONp request -->
-		<script id="dummy"></script>  
+<!-- The JSONp request -->
+<script id="dummy"></script>  
 
 </body>
 </html>
