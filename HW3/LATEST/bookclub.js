@@ -1,20 +1,33 @@
 
 /* Called when the user pushes the "submit" button */
 /* Sends a request to the API using the JSONp protocol */
-function newRequest() {
+function newRequest(searcher) {
+    document.getElementById("main-container").style.display = 'none';
+    document.getElementById("sticky-header").style.display = 'block';
 
-	var title = document.getElementById("title").value;
-	title = title.trim();
+    if(searcher == 'main-container') {
+    var parent = document.getElementById('main-container');
+	var title = parent.querySelector("#title").value;
+	var author = parent.querySelector("#author").value;	
+	var isbn = parent.querySelector("#isbn").value;
+	
+    }
+    
+    else {
+    var parent = document.getElementById('sticky-header');
+	var title = parent.querySelector('#title').value;
+	var author = parent.querySelector('#author').value;	
+	var isbn = parent.querySelector('#isbn').value;	
+    }
+    
+    title = title.trim();
 	title = title.replace(" ","+");
-
-	var author = document.getElementById("author").value;
-	author = author.trim();
+    
+    author = author.trim();
 	author = author.replace(" ","+");
-
-	var isbn = document.getElementById("isbn").value;
-	isbn = isbn.trim();
+    
+    isbn = isbn.trim();
 	isbn = isbn.replace("-","");
-
 	// Connects possible query parts with pluses
 	var query = ["",title,author,isbn].reduce(fancyJoin);
 
