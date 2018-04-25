@@ -61,7 +61,24 @@ function handleResponse(bookListObj) {
 	/* write each title as a new paragraph */
 	for (i=0; i<bookList.length; i++) {
 		var book = bookList[i];
+		console.log(book);
 		var title = book.volumeInfo.title;
+		try {
+			var image = book.volumeInfo.imageLinks.thumbnail; // might be undefined;
+		} catch(error){
+			var image = null;
+			console.log(error);
+		}
+		try {
+			var description = book.volumeInfo.description;
+		} catch(error){
+			var description = null;
+		}
+		var author = book.volumeInfo.authors[0];
+		console.log(title);
+		console.log(image);
+		console.log(author);
+		console.log(description);
 		var titlePgh = document.createElement("p");
 		/* ALWAYS AVOID using the innerHTML property */
 		titlePgh.textContent = title;
