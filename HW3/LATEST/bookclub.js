@@ -48,7 +48,10 @@ function newRequest() {
 
 /* Used above, for joining possibly empty strings with pluses */
 function fancyJoin(a,b) {
-    if (a == "") { return b; }	    else if (b == "") { return a; }    else { return a+"+"+b; }}
+    if (a == "") { return b; }	
+    else if (b == "") { return a; }
+    else { return a+"+"+b; }
+}
 
 /* The callback function, which gets run when the API returns the result of our query */
 /* Replace with your code! */
@@ -61,29 +64,22 @@ function handleResponse(bookListObj) {
 	/* write each title as a new paragraph */
 	for (i=0; i<bookList.length; i++) {
 		var book = bookList[i];
-		console.log(book);
 		var title = book.volumeInfo.title;
-		try {
-			var image = book.volumeInfo.imageLinks.thumbnail; // might be undefined;
-		} catch(error){
-			var image = null;
-			console.log(error);
-		}
-		try {
-			var description = book.volumeInfo.description;
-		} catch(error){
-			var description = null;
-		}
-		var author = book.volumeInfo.authors[0];
-		console.log(title);
-		console.log(image);
-		console.log(author);
-		console.log(description);
 		var titlePgh = document.createElement("p");
 		/* ALWAYS AVOID using the innerHTML property */
 		titlePgh.textContent = title;
 		bookDisplay.append(titlePgh);
 	}	
+}
+
+function overlayOn() {
+    document.getElementById("overlay").style.display = "block";
+    
+    
+}
+
+function overlayOff() {
+    document.getElementById("overlay").style.display = "none";
 }
 
 
