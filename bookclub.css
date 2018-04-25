@@ -6,6 +6,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	color: #4a73ff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 h1 {
 	text-transform:uppercase
@@ -38,6 +41,7 @@ header {
 	display:flex;
 	justify-content:center;
 }
+
 #search-button button {
 	font-family:Montserrat;
 	background-color:#4a73ff;
@@ -48,6 +52,51 @@ header {
 	font-weight:400;
 	font-size:1.05em;
 }
+
+
+#search-button-sticky {
+	display:flex;
+	justify-content:center;
+}
+
+#search-button-sticky button {
+	font-family:Montserrat;
+	background-color:#4a73ff;
+    height: 35px;
+    margin-top: 25px;
+    padding: 8px 17px;
+	color:#fff;
+	border:none;
+	border-radius: 9px;
+	font-weight:400;
+	font-size:1.05em;
+}
+
+#sticky-header {
+    margin-left: px;
+    margin-top: -50px;
+    width: 100%;
+    -webkit-box-shadow: 0px 10px 12px -2px rgba(186,186,186,1);
+    -moz-box-shadow: 0px 10px 12px -2px rgba(186,186,186,1);
+    box-shadow: 0px 10px 12px -2px rgba(186,186,186,1);
+    display:none;
+	flex-direction: row;
+	/*align-self:flex-end;*/
+	padding-bottom:35px;
+    padding-left:160px;
+    
+}
+
+.temp {
+    display: flex;
+    flex-direction: row;
+}
+/*.column-sticky {
+	display:inline-block;;
+	/*flex-direction:column;
+	/*align-self:flex-end;*/
+	/*margin-bottom:5px;
+}*/
 .title-above {
 	padding-left:7px;
 }
@@ -56,16 +105,17 @@ h1 {
    font-weight: light;
 }
 
-
 main {
      flex: 1 0 auto;  /* the sticky footer trick without the footer */
 	 align-self: center;
+    margin-left: -10vh;
 }
 #main-container {
 	display:flex;
 	flex-direction:row;
 	align-self:flex-end;
 	padding-bottom:35px;
+    
 }
 .column {
 	display:flex;
@@ -107,13 +157,6 @@ p {
     cursor: pointer; /* Add a pointer on hover */
 }
 
-#left-preview, #right-preview {flex:1 1 50%;padding:4%;align-self:center;max-width:50%;}
-#thumb {width:100%}
-#pre-title {font-weight:700;font-size:1.5em;max-height:2.7em;text-overflow:ellipsis;overflow:hidden;}
-#pre-author {font-size:1.3em;padding-bottom:15px;}
-#pre-desc {font-size:0.9em;line-height:1.4em;max-height:10em;text-overflow:ellipsis;overflow:hidden}
-
-
 .close {
     position: absolute;
     top: 0px;
@@ -124,14 +167,14 @@ p {
 .overlay_tile {
     width: 410px; /* Full width (cover the whole page) */
     height: 320px; /* Full height (cover the whole page) */
-    color: #000;
+    font-size: 50px;
+    color: white;
     transform: translate(,-50%);
     -ms-transform: translate(,-50%);
     background-color: white; /* Black background with opacity */
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
     margin: 0 15px;
-	display:flex;
 }
 
 .tiles {
@@ -188,7 +231,7 @@ p {
 	#search-button button, .column {
 		width:95%;
 	}
-	main {width:100%}
+	main {width:100%; }
 	#main-container {
 		flex-direction:column;
 	}
