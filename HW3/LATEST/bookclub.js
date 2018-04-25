@@ -73,7 +73,7 @@ function handleResponse(bookListObj) {
 }
 
 function overlayOn() {
-    document.getElementById("overlay").style.display = "block";
+    document.getElementById("overlay").style.display = "flex";
     
     
 }
