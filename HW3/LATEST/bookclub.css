@@ -1,0 +1,110 @@
+body {
+	min-height: 100vh;  /* need this line to 
+					tell body to fill viewport */
+	font-family: 'Montserrat', sans-serif;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	color: #4a73ff;
+}
+h1 {
+	text-transform:uppercase
+}
+#searchby {
+	color:#000;
+	font-weight:400;
+}
+header {
+       /*text-align: center;*/
+       padding: 10px;
+	  
+}
+
+/* Placeholder color/opacity */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  opacity:0.25;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  opacity:0.25;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  opacity:0.25;
+}
+:-moz-placeholder { /* Firefox 18- */
+  opacity:0.25;
+}
+
+#search-button {
+	display:flex;
+	justify-content:center;
+}
+#search-button button {
+	font-family:Montserrat;
+	background-color:#4a73ff;
+	padding:8px 17px;
+	color:#fff;
+	border:none;
+	border-radius: 9px;
+	font-weight:400;
+	font-size:1.05em;
+}
+.title-above {
+	padding-left:7px;
+}
+h1 {
+   font-size: x-large;
+   font-weight: light;
+}
+
+
+main {
+     flex: 1 0 auto;  /* the sticky footer trick without the footer */
+	 align-self: center;
+}
+#main-container {
+	display:flex;
+	flex-direction:row;
+	align-self:flex-end;
+	padding-bottom:35px;
+}
+.column {
+	display:flex;
+	flex-direction:column;
+	align-self:flex-end;
+	margin-bottom:5px;
+}
+.or {
+	align-self:flex-end;
+	padding:7px;
+	font-weight:700;
+}
+
+input {
+	border-radius: 5px;
+	font-size: medium;
+	border:1px solid #4a73ff;
+	padding:5px;
+	margin-top:10px;
+}
+
+
+p {
+	font-size: medium;
+	margin: 10px;
+}
+
+
+@media screen and (max-width:620px) {
+	#search-button button, .column {
+		width:95%;
+	}
+	main {width:100%}
+	#main-container {
+		flex-direction:column;
+	}
+	.or,.column {align-self:center}
+	.or {margin-bottom:-24px;}
+	h1 {
+		text-align:center;
+	}
+}
