@@ -12,7 +12,32 @@
 <body>
 	<header>
 		<h1>Book Club</h1>
-	</header>
+        
+            <div id="sticky-header">
+            <div class="temp">
+			<div class="column-sticky">
+				<div class="title-above">Author</div>
+				<input id="author" placeholder="ex William Shakespeare">
+			</div>
+			<div>&nbsp;&nbsp;</div>
+			<div class="column-sticky">
+				<div class="title-above">Title</div>
+				<input id="title" placeholder="ex Romeo and Juliet"> 
+			</div>
+			<div>&nbsp;&nbsp;</div>
+			<div class="column-sticky">
+				<div class="title-above">ISBN</div>
+				<input id="isbn" placeholder="ex 000-0-00-000000-0">
+			</div>
+		    <div>&nbsp;</div>
+            <div id="search-button-sticky">
+                 <button onclick="newRequest('sticky-header')">Search</button> 
+                <!--<button onclick="overlayOn()">Search</button>-->
+            </div>
+             </div>   
+        </div>
+        
+        </header>
 	<main>
 		<h2 id="searchby">Search for a book by...</h2>
 		<div id="main-container">
@@ -32,8 +57,8 @@
 			</div>
 		</div>
 		<div id="search-button">
-			 <!--<button onclick="newRequest()">Search</button> -->
-            <button onclick="overlayOn()">Search</button>
+			 <button onclick="newRequest('main-container')">Search</button> 
+            <!--<button onclick="overlayOn()">Search</button>-->
 		</div>
 
 
@@ -41,7 +66,7 @@
 		</div>
         
         <div class="overlay_base" id="overlay">
-            <span class="close">&#x24E7;</span>
+            <span class="close" onClick="overlayOff()">&#x24E7;</span>
             <div class="tiles">
                  <div class="left_arrow">&larr;</div>
 
