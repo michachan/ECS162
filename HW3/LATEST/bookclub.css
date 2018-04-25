@@ -115,43 +115,33 @@ p {
     font-size: 1.9em;
 }
 .overlay_tile {
-    align-self: center;
     width: 410px; /* Full width (cover the whole page) */
     height: 320px; /* Full height (cover the whole page) */
-    top: 50%;
-    left: 50%;
     font-size: 50px;
     color: white;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
+    transform: translate(,-50%);
+    -ms-transform: translate(,-50%);
     background-color: white; /* Black background with opacity */
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
+    margin: 0 15px;
 }
 
 .tiles {
+    position: absolute;
     display: flex;
     flex-direction: row;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    
 }
 
 .left_arrow {
     display:flex;
 	flex-direction:column;
-	align-self:flex-end;
-	margin-bottom:5px;  
-    color: white;
-    width: 22px;
-    top: 50%;
-    left: 35%;
-    border-radius: 5px;
-	font-size: 20px;
-	border:1px solid #ffffff;
-}
-
-.right_arrow {
-    display:flex;
-	flex-direction:column;
-	align-self:flex-end;
+	align-self:center;
 	margin-bottom:5px;  
     color: white;
     width: 39px;
@@ -163,6 +153,28 @@ p {
 	font-size: 35px;
     font-weight: 35px;
 	border:1px solid #ffffff;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    
+}
+
+.right_arrow {
+    display:flex;
+	flex-direction:column;
+	align-self:center;
+	margin-bottom:5px;  
+    color: white;
+    width: 39px;
+    height: 25px;
+    justify-content: center;
+    top: 50%;
+    right: 35%;
+    border-radius: 5px;
+	font-size: 35px;
+    font-weight: 35px;
+	border:1px solid #ffffff;
+    padding-bottom: 5px;
+    padding-left: 3px;
 }
 
 @media screen and (max-width:620px) {
