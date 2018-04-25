@@ -30,13 +30,23 @@
 				<div class="title-above">ISBN</div>
 				<input id="isbn" placeholder="ex 000-0-00-000000-0">
 			</div>
-		</div>		<div id="search-button">			<button onclick="newRequest()">Search</button>
+		</div>
+		<div id="search-button">
+			 <!--<button onclick="newRequest()">Search</button> -->
+            <button onclick="overlayOn()">Search</button>
 		</div>
 
 
 		<div id="bookDisplay">
 		</div>
+        
+        <div class="overlay_base" id="overlay">
+            <div class="overlay_tile">Text
+            </div>
+        </div>
 	</main>
+    
+    
 
 	<!-- The Javascript for this page -->
 	<script src="bookclub.js"> </script>
