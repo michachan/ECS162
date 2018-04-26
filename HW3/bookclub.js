@@ -145,14 +145,18 @@ function disable404Overlay(){
 	document.getElementById('error-overlay').setAttribute('style','display:none');
 }
 function pushBookData(bookList,i){
-	if(i !== bookList.length){
+	if(i !== bookList.length-1){
 		var next = i+1;
+		document.getElementById('overlay').getElementsByClassName('right_arrow')[0].setAttribute('style','opacity:1');
 	} else {
 		var next = 0;
+		document.getElementById('overlay').getElementsByClassName('right_arrow')[0].setAttribute('style','opacity:0.2');
 	}
 	if(i !== 0){
 		var back = i-1;
+		document.getElementById('overlay').getElementsByClassName('left_arrow')[0].setAttribute('style','opacity:1');
 	} else {
+		document.getElementById('overlay').getElementsByClassName('left_arrow')[0].setAttribute('style','opacity:0.2');
 		var back = bookList.length-1;
 	}
 	document.getElementById('overlay').getElementsByClassName('left_arrow')[0].setAttribute('goTo',back);
