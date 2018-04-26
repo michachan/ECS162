@@ -11,8 +11,8 @@
 
 <body>
 	<header>
-		<h1>Book Club</h1>
 		<div id="sticky-header">
+			<h1>Book Club</h1>
 			<div class="temp">
 			<div class="column-sticky">
 				<div class="title-above">Author</div>
@@ -36,6 +36,9 @@
 			 </div>   
 		</div>
     </header>
+	<header>
+		<h1>Book Club</h1>
+	</header>
 	<main>
 		<h2 id="searchby">Search for a book by...</h2>
 		<div id="main-container">
@@ -66,20 +69,24 @@
 		<div class="overlay_base" id="overlay">
 			<span class="close" onClick="disableOverlay()">&#x24E7;</span>
 			<div class="tiles">
-				<div class="left_arrow" onclick="pushBookData(window.global.bookList,Number(this.getAttribute('goTo')))">&larr;</div>
-				<div class="overlay_tile">
-					<div id="left-preview">
-						<img id="thumb">
+				<div id="top-preview">
+					<div class="left_arrow" onclick="pushBookData(window.global.bookList,Number(this.getAttribute('goTo')))">&larr;</div>
+					<div class="overlay_tile">
+						<div class="left-preview">
+							<img class="thumb">
+						</div>
+						<div class="right-preview">
+							<div class="pre-title"></div>
+							<div class="pre-author"></div>
+							<div class="pre-desc"></div>
+						</div>
 					</div>
-					<div id="right-preview">
-						<div id="pre-title"></div>
-						<div id="pre-author"></div>
-						<div id="pre-desc"></div>
-					</div>
+					<div class="right_arrow" onclick="pushBookData(window.global.bookList,Number(this.getAttribute('goTo')))">&rarr;</div>
 				</div>
-				<div class="right_arrow" onclick="pushBookData(window.global.bookList,Number(this.getAttribute('goTo')))">&rarr;</div>
+				<div id="bottom-preview">
+					<div class="box" onclick="keepBook()">Keep</div>
+				</div>
 			</div>
-			<div class="box"></div>
         </div>
 		
 		

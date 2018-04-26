@@ -1,12 +1,13 @@
 window.global = {};
 window.global.bookList = [];
+window.global.myList = [];
 /* Called when the user pushes the "submit" button */
 /* Sends a request to the API using the JSONp protocol */
 function newRequest(searcher) {
 	document.getElementById("main-container").setAttribute('style','display:none');
 	document.getElementById('searchby').setAttribute('style','display:none');
 	document.getElementById('search-button').getElementsByTagName('button')[0].setAttribute('style','display:none');
-    document.getElementById("sticky-header").setAttribute('style','display:block');
+    document.getElementById("sticky-header").setAttribute('style','display:flex');
     if(searcher == 'main-container') {
 		var parent = document.getElementById('main-container');
 		var title = parent.querySelector("#title").value;
@@ -131,10 +132,28 @@ function pushBookData(bookList,i){
 	document.getElementById('overlay').getElementsByClassName('right_arrow')[0].setAttribute('goTo',next);
 	currentBook = bookList[i];
 	//var overlay = document.getElementById('overlay');
-	document.getElementById('thumb').src = currentBook.image;
-	document.getElementById('pre-title').textContent = currentBook.title;
-	document.getElementById('pre-author').textContent = "by "+currentBook.author;
-	document.getElementById('pre-desc').textContent = currentBook.shortDesc;
+	document.getElementById('overlay').getElementsByClassName('thumb')[0].src = currentBook.image;
+	document.getElementById('overlay').getElementsByClassName('pre-title')[0].textContent = currentBook.title;
+	document.getElementById('overlay').getElementsByClassName('pre-author')[0].textContent = "by "+currentBook.author;
+	document.getElementById('overlay').getElementsByClassName('pre-desc')[0].textContent = currentBook.shortDesc;
+}
+
+function keepBook(){
+	var initNode = document.getElementById('top-preview').getElementsByClassName('overlay_tile')[0];
+	var cloneNode = initNode.cloneNode(true);
+	var leftClone = cloneNode.getElementsByClassName('left-preview')[0];
+	var close = document.createElement('span');
+	close.className += "boxClose";
+	close.setAttribute('onclick','removeBook(this)');
+	var closeContent = document.createTextNode('\u24E7');
+	close.appendChild(closeContent);
+	
+	cloneNode.insertBefore(close,leftClone);
+	document.getElementById('bookDisplay').appendChild(cloneNode);
+	disableOverlay();
+}
+function removeBook(bookNode){
+	bookNode.parentNode.remove();
 }
 
 function enableOverlay() {
@@ -143,4 +162,5 @@ function enableOverlay() {
 
 function disableOverlay() {
     document.getElementById("overlay").style.display = "none";
+	window.global.bookList = [];
 }
