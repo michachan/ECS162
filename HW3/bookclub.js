@@ -117,6 +117,7 @@ function handleResponse(bookListObj) {
 		//bookDisplay.append(titlePgh);
 	}
 	enableOverlay();
+	document.getElementsByTagName('main')[0].setAttribute('style','background-color:#e9e9e9');
 	pushBookData(window.global.bookList,0);
 	}
 }
