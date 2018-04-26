@@ -22,11 +22,13 @@ header {
 	  
 }
 .mobile-search {
-	top:10px;
-	right:10px;
-	font-size:25px;
+	top:5px;
+	right:30px;
+	font-size:35px;
 	position:absolute;
 	display:none;
+}
+
 }
 /* Placeholder color/opacity */
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
