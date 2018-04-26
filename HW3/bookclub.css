@@ -21,7 +21,13 @@ header {
        /*text-align: center;*/
 	  
 }
-
+.mobile-search {
+	top:10px;
+	right:10px;
+	font-size:25px;
+	position:absolute;
+	display:none;
+}
 /* Placeholder color/opacity */
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   opacity:0.25;
@@ -145,7 +151,7 @@ p {
 }
 
 
-#overlay {
+.overlay_base {
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
@@ -198,7 +204,7 @@ p {
     
 }
 .boxClose {
-	left:250px;
+	left:-10px;
 	font-size:25px;
 	position:relative;
 }
@@ -273,4 +279,9 @@ p {
 	#bookDisplay .overlay_tile {
 		flex:0 1 100%;
 	}
+	#sticky-header {
+		justify-content:center;
+	}
+	.temp {display:none}
+	.mobile-search {display:block}
 }

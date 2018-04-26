@@ -28,7 +28,7 @@ function newRequest(searcher) {
 
 	// Connects possible query parts with pluses
 	var query = ["",title,author,isbn].reduce(fancyJoin);
-
+	window.global.lastQuery = {"title": title, "author": author, "isbn": isbn};
 	// The JSONp part.  Query is executed by appending a request for a new
 	// Javascript library to the DOM.  It's URL is the URL for the query. 
 	// The library returned just calls the callback function we specify, with
@@ -72,7 +72,9 @@ function handleResponse(bookListObj) {
 
 	/* where to put the data on the Web page */ 
 	var bookDisplay = document.getElementById("bookDisplay");
-
+	if(!bookList){
+		enable404Overlay();
+	} else {
 	/* write each title as a new paragraph */
 	for (i=0; i<bookList.length; i++) {
 		var book = bookList[i];
@@ -116,6 +118,30 @@ function handleResponse(bookListObj) {
 	}
 	enableOverlay();
 	pushBookData(window.global.bookList,0);
+	}
+}
+
+function mobileSearch(){
+	document.getElementById('main-container').setAttribute('style','display:flex;padding-top:50px;');
+	document.getElementById('search-button').getElementsByTagName('button')[0].setAttribute('style','display:block');
+	
+}
+
+function enable404Overlay(){
+	document.getElementById('error-overlay').setAttribute('style','display:block');
+	var query = window.global.lastQuery;
+	document.getElementById('error-overlay').getElementsByClassName('tiles')[0].textContent = 'The book '+query.title+' by '+query.author+' or ISBN number '+query.ISBN+' could not be found.\n\nTry another search';
+	var bottom = document.createElement('div');
+	bottom.setAttribute('id','bottom-preview');
+	var box = document.createElement('box');
+	box.setAttribute('onclick','disable404Overlay()');
+	box.textContent = 'OK';
+	box.className += ' box';
+	bottom.appendChild(box);
+	document.getElementById('error-overlay').getElementsByClassName('tiles')[0].appendChild(bottom);
+}
+function disable404Overlay(){
+	document.getElementById('error-overlay').setAttribute('style','display:none');
 }
 function pushBookData(bookList,i){
 	if(i !== bookList.length){
@@ -141,14 +167,13 @@ function pushBookData(bookList,i){
 function keepBook(){
 	var initNode = document.getElementById('top-preview').getElementsByClassName('overlay_tile')[0];
 	var cloneNode = initNode.cloneNode(true);
-	var leftClone = cloneNode.getElementsByClassName('left-preview')[0];
 	var close = document.createElement('span');
-	close.className += "boxClose";
+	close.className += " boxClose";
 	close.setAttribute('onclick','removeBook(this)');
 	var closeContent = document.createTextNode('\u24E7');
 	close.appendChild(closeContent);
 	
-	cloneNode.insertBefore(close,leftClone);
+	cloneNode.appendChild(close);
 	document.getElementById('bookDisplay').appendChild(cloneNode);
 	disableOverlay();
 }
