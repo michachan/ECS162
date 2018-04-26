@@ -10,7 +10,8 @@ body {
 	/*background-color:#e9e9e9;*/
 }
 h1 {
-	text-transform:uppercase
+	text-transform:uppercase;
+	padding-left: 20px;
 }
 #searchby {
 	color:#000;
