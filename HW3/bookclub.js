@@ -131,7 +131,17 @@ function mobileSearch(){
 function enable404Overlay(){
 	document.getElementById('error-overlay').setAttribute('style','display:block');
 	var query = window.global.lastQuery;
-	document.getElementById('error-overlay').getElementsByClassName('tiles')[0].textContent = 'The book '+query.title+' by '+query.author+' or ISBN number '+query.ISBN+' could not be found.\n\nTry another search';
+	if(!query.title){
+		query.title = 'matching any title';
+	}
+	if(!query.author){
+		query.author = 'matching any author';
+	}
+	if(!query.isbn){
+		query.isbn = 'matching any ISBN';
+	}
+	console.log(query);
+	document.getElementById('error-overlay').getElementsByClassName('tiles')[0].textContent = 'The book '+query.title+' by '+query.author+' or ISBN number '+query.isbn+' could not be found.\n\nTry another search';
 	var bottom = document.createElement('div');
 	bottom.setAttribute('id','bottom-preview');
 	var box = document.createElement('box');
