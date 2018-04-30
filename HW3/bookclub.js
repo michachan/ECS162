@@ -135,7 +135,7 @@ function enable404Overlay(){
 		query.title = 'matching any title';
 	}
 	if(!query.author){
-		query.author = 'any author';
+		query.author = 'matching any author';
 	}
 	if(!query.isbn){
 		query.isbn = 'matching any ISBN';
