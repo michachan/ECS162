@@ -9,8 +9,8 @@ var cmdStr = 'SELECT * FROM photoTags WHERE idNum in (CSLIST)';
 var imageURL = 'http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/';
 // Create a node-static server instance to serve the './public' folder
 var file = new static.Server('./public');
- 
- 
+
+
 /***********************************/
 /** GLOBALLY SCOPED FUNCTIONS **/
 /***********************************/
@@ -29,38 +29,37 @@ var fs = require('fs');  // file access module
 function loadImageList () {
     var data = fs.readFileSync('photoList.json');
     if (! data) {
-	    console.log("cannot read photoList.json");
+            console.log("cannot read photoList.json");
     } else {
-	    listObj = JSON.parse(data);
-	    imgList = listObj.photoURLs;
+            listObj = JSON.parse(data);
+            imgList = listObj.photoURLs;
     }
-}*/ 
+}*/
 /***********************************/
 /** END GLOBALLY SCOPED FUNCTIONS **/
 /***********************************/
 
 
 function handler (request, response) {
-	var urls = request.url;
-	var urlParts = urls.split('/');
-	var urlType = urlParts[1].split('?');
-    
+        var urls = request.url;
+        var urlParts = urls.split('/');
+        var urlType = urlParts[1].split('?');
+
     var req = url.parse(request.url, true);
 
-	
-	file.serve(request, response, function (error, result){
-		if(error){
-			if(urlType[0] === "query"){
-				if(urlType[1]){
-					var query = urlType[1].split("num=");
-					if(query[1]){ //changed stuff in here
+
+        file.serve(request, response, function (error, result){
+                if(error){
+                        if(urlType[0] === "query"){
+                                if(urlType[1]){
+                                        var query = urlType[1].split("numList=");
+                                        if(query[1]){ //changed stuff in here
+                        console.log(req);
                         var indices = '(' + req.query.numList.split(" ").join(",") + ')'; //numList from the new URL
                         var responseObj = [];
                         db.each(cmdStr.replace("CSLIST", indices),
                                function(err, row) {
-                                        responseObj.push({
-                                            src:imageURL+row.filename, width:row.width, 
-                                            height:row.height
+                                        responseObj.push({src:imageURL+row.filename, width:row.width, height:row.height
                                         }); //end function error
                         },
                         function(err) { //callback writes as JSON
@@ -68,30 +67,29 @@ function handler (request, response) {
                             response.write(JSON.stringify(responseObj));
                             response.end();
                         });
-						query = query[1];
-						if(query > -1 && query < 990){
-							query = query.replace(/^0+/, '');
-							response.write(imgList[query]);
-						} else {
-							response.writeHead(404, {"Content-Type": "text/html"});
-							response.write("Bad Query");
+                                                query = query[1];
+                                                if(query > -1 && query < 990){
+                                                        query = query.replace(/^0+/, '');
+                                                        response.write(imgList[query]);
+                                                } else {
+                                                        response.writeHead(404, {"Content-Type": "text/html"});
+                                                        response.write("Bad Query");
                             response.write("Parameter missing: numList.")
                             response.end();
                         }
-					} else {
-						response.write("No argument passed.");
-					}
-				} else {
-					response.write("No argument passed.");
-				}
-			} else {
-				file.serveFile('/404.html',404, {"Content-Type": "text/html"}, request, response);
-				//response.writeHead(404, );
-			}
-		}
-	});
+                                        } else {
+                                                response.write("No argument passed.");
+                                        }
+                                } else {
+                                        response.write("No argument passed.");
+                                }
+                        } else {
+                                file.serveFile('/404.html',404, {"Content-Type": "text/html"}, request, response);
+                                //response.writeHead(404, );
+                        }
+                }
+        });
 }
 
 var server = http.createServer(handler);
-//server.listen("56965");
-server.listen("8000", '127.0.0.1');
+server.listen("56965");
