@@ -40,7 +40,13 @@ function photoByNumber() {
 
         //Part 4
 		console.log(parsedRes);
-        renderReact(parsedRes);
+		var setColumn;
+		if(document.documentElement.clientWidth > 650){
+			setColumn = 2;
+		} else {
+			setColumn = 1;
+		}
+        renderReact(parsedRes,setColumn);
 
         if (oReq.status == 400) {
             document.getElementById("num").value = '';
@@ -93,7 +99,7 @@ function handle_url(url)
 }
 
 // TA CODE
-function renderReact(photos){	
+function renderReact(photos,columns){	
 	// A react component for a tag
 	class Tag extends React.Component {
 
@@ -174,7 +180,7 @@ function renderReact(photos){
 		this.state = { photos: photos };
 		this.selectTile = this.selectTile.bind(this);
 	  }
-
+	  
 	  selectTile(event, obj) {
 		console.log("in onclick!", obj);
 		let photos = this.state.photos;
@@ -186,7 +192,8 @@ function renderReact(photos){
 		return (
 		   React.createElement( Gallery, {photos: photos, 
 			   onClick: this.selectTile, 
-			   ImageComponent: ImageTile} )
+			   ImageComponent: ImageTile,
+			   columns: columns} )
 			);
 	  }
 
