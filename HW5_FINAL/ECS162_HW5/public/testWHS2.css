@@ -1,0 +1,92 @@
+
+body {
+	min-height: 100vh;  /* need this line to 
+					tell body to fill viewport */
+	font-family: 'Lato', sans-serif;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	color: blue;
+	margin:0;
+}
+
+header {
+       text-align: center;
+       padding: 10px;
+	   display:flex;
+	   flex-direction:row;
+	   align-items:center;
+	   background-color:#fff;
+}
+header h1 {
+	text-transform:uppercase;
+	font-weight:900;
+	font-size:1.75em;
+	font-style:italic;
+	color: #314d7f;
+	padding:10px;
+}
+#query {
+	flex: 1 1 auto;
+	display:flex;
+	justify-content:center;
+}
+main {
+     flex: 1 0 auto;  /* the sticky footer trick without the footer */
+	 background-color:#f0f0f0;
+}
+
+
+input#num {
+	font-size: medium;
+	border:1px solid #314d7f;
+	padding:0 10px;
+	width:100%;
+	max-width:310px;
+}
+input#sbut {
+	height:25px;
+	border:1px solid #314d7f;
+	border-left:none;
+}
+#noresult {
+	color:#909eb8;
+	text-align:center;
+	height: 100%;
+	width: 100%;
+	padding-top:13%;
+	font-size:1.3em;
+	line-height:1.5em;
+}
+img.normal {
+	padding:10px;
+}
+
+p {
+	font-size: medium;
+	margin: 10px;
+}
+
+div#photoDisplay {
+    width: 400px;
+    margin: 20px;
+}
+
+img {
+    width: 100%;
+}
+
+@media screen and (max-width:650px) {
+	input#sbut {
+		border:none;
+		height:40px;
+	}
+	input#num {
+		border:none;
+		max-width:100%;
+	}
+	#query {
+		justify-content: flex-end;
+	}
+}
+
