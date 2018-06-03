@@ -44,18 +44,22 @@ function loadImageList(){
 		rows.forEach(function(row){
 			if(n < 20){
 				n++;
-				console.log(n);
+				console.log(row);
 				var ref = row.idNum;
 				let imageName = encodeURI(row.src);
-				let imageURL = `http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/${imageName}`;
+				let imageURL = `http://lotus.idav.ucdavis.edu/public/ecs162/UNESCO/${imageName}?ref=${ref}`;
 				APIrequestObject = {"requests":[]};
 				let x = new imageItem(imageURL);
 				APIrequestObject.requests.push(x);
-				//console.log(x);
-				annotateImage(APIrequestObject);
+				spreadRequests(APIrequestObject,n);
 			}
 		});
 	});
+}
+function spreadRequests(APIrequestObject,n){
+	setTimeout(function(){
+		annotateImage(APIrequestObject);
+	},1000*n);
 }
 
 function imageItem(image){
@@ -121,16 +125,20 @@ function annotateImage(APIrequestObject) {
 					o.push(tags[i].description);
 				}
 			}
-			//console.log(o);
-			//console.log(landmark);
 			dbCallback(landmark,o);
 		}		
     } // end callback function
 	function dbCallback(landmark,o){
 		console.log(APIrequestObject);
 		console.log(APIrequestObject.requests[0].image.source.imageUri);
-		console.log(landmark);
-		console.log(o);
+		let url = APIrequestObject.requests[0].image.source.imageUri;
+		let id = url.split('ref=')[1];
+		db.serialize(function(){
+			console.log(id);
+			console.log(landmark);
+			console.log(o);
+			//let sql = `UPDATE photoTags SET tags = ${landmark}`;
+		});
 	}
 }
 
