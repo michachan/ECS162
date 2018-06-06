@@ -131,14 +131,16 @@ function renderReact(photos,columns){
 			// parse image src for photo name
 		var photoName = _src.split("/").pop();
 		photoName = photoName.split('%20').join(' ');
-
-			return ( React.createElement('div',
-		 {className: _selected ? 'selectedControls' : 'normalControls'},
-			 // div contents - so far only one tag
-				  React.createElement(Tag,
-			 { text: photoName })
-			)// createElement div
-		)// return
+            var _tags = this.props.Tags;
+            
+            var args = [];        
+            args.push( 'div' );      
+            args.push( { className: _selected ? 'selectedControls' : 'normalControls'} )
+            
+            for (var idx =0; idx < _tags.length; idx++)
+                args.push( React.createElement(Tag, {text: _tags[idx], parentImage: _src}));
+            
+            return (React.createElement.apply(null, args) );
 		} // render
 	};
 
@@ -167,7 +169,8 @@ function renderReact(photos,columns){
 			 // contents of div - the Controls and an Image
 			React.createElement(TileControl,
 				{selected: _selected,
-				 src: _photo.src}),
+				 src: _photo.src,
+                Tags: _photo.TagList }),
 			React.createElement('img',
 				{className: _selected ? 'selected' : 'normal',
 						 src: _photo.src,
