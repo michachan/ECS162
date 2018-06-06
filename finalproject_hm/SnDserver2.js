@@ -64,6 +64,7 @@ function sendFiles (request, response) {
         //Add message property to JSON
         if (data.length == 0 || data == undefined) {
             data.push({"message":"These were no photos satisfying this query."});
+            data.push({TagList: data.tags.split(",")});
         } else {
             data.push({"message":"These are all of the photos satisfying this query."});
         }
@@ -183,4 +184,4 @@ function handle_number(num)
 var finder = http.createServer(sendFiles);
 
 //Listen to Port
-finder.listen("52513");
+finder.listen("56965");
