@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 { "photoURLs" :
   [
      "A%20Torre%20Manuelina.jpg",
@@ -7,4 +8,15 @@
      "Royal%20Palace%2c%20Rabat.jpg",
      "Adult%20Komodo.jpg"
    ]
+=======
+{ "photoURLs" :
+  [
+     "A%20Torre%20Manuelina.jpg",
+     "Uluru%20sunset1141.jpg",
+     "Sejong tomb 1.jpg",
+     "Serra%20da%20Capivara%20-%20Painting%207.JPG",
+     "Royal%20Palace%2c%20Rabat.jpg",
+     "Adult%20Komodo.jpg"
+   ]
+>>>>>>> 030dd02524a5e505e43182240f12b430cba949fa
 }
