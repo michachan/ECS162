@@ -1,0 +1,46 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>Web page for testing</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" type="text/css" href="http://web.cs.ucdavis.edu/~amenta/s18/reset.css">
+	<link rel="stylesheet" type="text/css" href="photoGallery.css">
+	<link rel="stylesheet" type="text/css" href="testWHS2.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,900i" rel="stylesheet">
+</head>
+
+<body>
+<header>
+	<h1>PhotoQ</h1>
+	<div id="query">
+		<div id="search-box">
+			<input id="num" placeholder="Type some tags!" onkeydown="autofill(event)">
+			<input id="sbut" onclick="photoByNumber()" type="image" src="/search.png" />
+		</div>
+	</div>
+</header>
+<main>
+	
+	<!--
+	<div id="photoDisplay">
+	<img id="photoImg">
+	</div>-->
+	<div id="react">
+		<div id="noresult">Nothing's been searched yet!<br />Use the search above</div>
+	</div>
+</main>
+	<script>
+	if(document.documentElement.clientWidth < 650){
+		document.getElementById('num').setAttribute('style','display:none');
+	}
+	</script>
+	<!-- The Javascript for this page -->
+	<script src="https://unpkg.com/react@15/dist/react.js"></script> 
+	<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+	<script src="prop-types.js"></script>
+	<script src="react-photo-gallery.js"></script>
+	<script src="testWHS2.js"></script>
+
+</body>
+</html>
