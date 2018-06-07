@@ -9,6 +9,9 @@ var dbFileName = "PhotoQ.db";
 var db = new sqlite3.Database(dbFileName);
 
 
+var sqlTag = "SELECT * FROM photoTags WHERE idNum IN (";
+var sqlUpdate = "UPDATE photoTags SET tags = ? WHERE idNum = ?";
+
 // Logic:
 //     If the link contains the word query DONE
 //         dynamically answer like miniserver.js DONE
@@ -17,13 +20,32 @@ var db = new sqlite3.Database(dbFileName);
 //         if its a page you dont have DONE
 //             respond with a 404 page DONE
 
+function handleDeleteTag(q)
+{
+    var idAndTag = q.split("=");
+    var removeIdNum = idAndTag[1].split("+");
+    var sqlCmd = sqlTag + removeIdNum[0] + ')';
+    console.log(sqlCmd);
+    db.each(sqlCmd, hollaback);
+
+    function hollaback(error, data){
+        if(error) console.log(error);
+        var split = data.tags.split(",");
+        split.splice(split.indexOf(removeIdNum[1]), 1);
+        split = split.join(",");
+        db.run(sqlUpdate, split, removeIdNum[0]);
+    }
+}
 
 function sendFiles (request, response) {
     var url = request.url;
     var q = url.split("/")[1];
+    console.log(request.url);
+    if(q.indexOf('delTag')>=0)
+        handleDeleteTag(q);
 
     // Error checking
-    if (q.startsWith('query?keyList=') == false && q.includes('query') == false) {
+    else if (q.startsWith('query?keyList=') == false && q.includes('query') == false) {
         request.addListener('end', findFile).resume();
     }
     else {
@@ -64,6 +86,7 @@ function sendFiles (request, response) {
         //Add message property to JSON
         if (data.length == 0 || data == undefined) {
             data.push({"message":"These were no photos satisfying this query."});
+            data.push({TagList: data.tags.split(",")});
         } else {
             data.push({"message":"These are all of the photos satisfying this query."});
         }
@@ -183,4 +206,4 @@ function handle_number(num)
 var finder = http.createServer(sendFiles);
 
 //Listen to Port
-finder.listen("52513");
+finder.listen("56965");

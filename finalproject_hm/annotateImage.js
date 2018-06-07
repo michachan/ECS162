@@ -90,6 +90,9 @@ function imageItem(image){
 //Michael's API Key
 // url = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBwFTyNG2_mOZANvzPZqPQHSHwMp7b_-cc';
 
+//Megan's API Key
+// url = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyD8aVQyGluq0c5zQloz5i7RdXsTZn2Krq4';
+
 //Haaris's API Key
 url = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyD5iDQ2GvmdN9N93lNgr3fHRZBqDxrIjw8';
 
@@ -160,6 +163,5 @@ function annotateImage(APIrequestObject) {
 	}
 }
 
-
-// Do it!
+//Do it!
 //annotateImage();
