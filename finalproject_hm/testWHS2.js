@@ -51,6 +51,9 @@ function photoByNumber() {
 				var parsedRes = JSON.parse(photoName);
 				for(var i=0;i<parsedRes.length;i++){
 					parsedRes[i].src = urlStart + parsedRes[i].src;
+					if(parsedRes[i].tags){
+						parsedRes[i].tags = parsedRes[i].tags.split(",");
+					}
 				}
 				var display = document.getElementById("photoImg");
 
@@ -95,7 +98,6 @@ function validate_numbers(url) {
         return 0;
     }
 
-
 function handle_url(url)
 {
     if (url.includes(' ')) {
@@ -106,6 +108,15 @@ function handle_url(url)
         var array = new Array(url);
         return array;
     }
+}
+
+
+function updateDBTags(idNumber, tag){		//id Number is the number of the picture in the database, index is the tag that u want to delete
+	var xhr = new XMLHttpRequest();
+    var reqQuery = idNumber +","+tag;
+    console.log(reqQuery);
+    xhr.open("GET", "/query?delTag=" + encodeURI(reqQuery).replace(/ |,/g, "+"));
+    xhr.send();
 }
 
 // TA CODE
@@ -124,21 +135,39 @@ function renderReact(photos,columns){
 	// A react component for controls on an image tile
 	class TileControl extends React.Component {
 
+        constructor(props){
+            super(props);
+            this.state = {tags: props.Tags}; // set the state of the Tile to be the list of tags it has
+        }
+
+        deleteTag(index, event){
+			event.stopPropagation();
+            var tag = this.state.tags.splice(index,1);    // get rid of the element in the index in the tags array
+            this.setState({tags: this.state.tags }); // update the state
+            updateDBTags(this.props.IdNum, tag);  //TODO: pass in index, pass in the photo number and send an AJAX request
+        }
+
 		render () {
 		// remember input vars in closure
 			var _selected = this.props.selected;
 			var _src = this.props.src;
 			// parse image src for photo name
-		var photoName = _src.split("/").pop();
-		photoName = photoName.split('%20').join(' ');
+            var _tags = this.props.Tags;
+            var args = [];
+            args.push( 'div' );
+            args.push( { className: _selected ? 'selectedControls' : 'normalControls'} )
+			try{
+				for (var idx =0; idx < _tags.length; idx++)
+	                args.push(
+	                    React.createElement("div", {onClick: this.deleteTag.bind(this, idx)} ,
+	                    React.createElement(Tag, {text: _tags[idx], parentImage: _src})
+	                ));
+			}
+            catch(e){
+				//console.log(e);
+			}
 
-			return ( React.createElement('div',
-		 {className: _selected ? 'selectedControls' : 'normalControls'},
-			 // div contents - so far only one tag
-				  React.createElement(Tag,
-			 { text: photoName })
-			)// createElement div
-		)// return
+            return (React.createElement.apply(null, args) );
 		} // render
 	};
 
@@ -167,11 +196,13 @@ function renderReact(photos,columns){
 			 // contents of div - the Controls and an Image
 			React.createElement(TileControl,
 				{selected: _selected,
-				 src: _photo.src}),
+				 src: _photo.src,
+				 IdNum: _photo.idNum,
+                Tags: _photo.tags}),
 			React.createElement('img',
 				{className: _selected ? 'selected' : 'normal',
 						 src: _photo.src,
-				 width: _photo.width,
+				 	 	width: _photo.width,
 						 height: _photo.height
 					})
 					)//createElement div
