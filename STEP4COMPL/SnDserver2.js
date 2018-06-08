@@ -44,7 +44,7 @@ function sendFiles (request, response) {
     var q = url.split("/")[1];
 
     // Error checking
-    if (q.startsWith('query?keyList=') == false && q.includes('query') == false) {
+    if (q.startsWith('query?keyList=') == false && q.includes('query') == false && q.includes('deleteTag?') == false && q.includes('addTag?') == false) {
 		request.addListener('end', findFile).resume();
     } else if(q.startsWith('query?autocomplete')){
 		console.log(url);
@@ -59,9 +59,41 @@ function sendFiles (request, response) {
 			let res = JSON.stringify(o);
 			response.write(res);
 		}
-		response.writeHead(200, {"Content-Type": "application/json"});
+		response.writeHead(200, {"Content-Type": "text/plain"});
 		response.end();
-	} else {
+	} else if (q.startsWith('deleteTag?') || q.startsWith('addTag?')) {
+
+		if (q.startsWith('deleteTag?')) {
+			var query = url.split('deleteTag?')[1];
+		} else {
+			var query = url.split('addTag?')[1];
+		}
+
+		query = query.split("&");
+		var idNum = query[0].split("=");
+		idNum = idNum[1];
+		var tag = query[1].split("=");
+		tag = decodeURIComponent(String(tag[1]));
+
+		console.log(tag);
+		console.log(idNum);
+
+		if (q.startsWith('deleteTag?')) {
+			update_tag(idNum, tag, 'delete');
+		}
+
+		if (q.startsWith('addTag?')) {
+			update_tag(idNum, tag, 'add');
+		}
+
+		//TODO do we need this?
+		response.writeHead(200, {"Content-Type": "text/plain"});
+		response.end();
+
+
+	}
+
+	else {
 		console.log(url);
         // if valid number of list of valid numbers
         // this function should return 0, else -1
@@ -88,7 +120,7 @@ function sendFiles (request, response) {
 
     //Closure
     function dataCallback(err,data) {
-		console.log(data);
+		// console.log(data);
 		var res = {};
 		res.results = {};
         //Error Check
@@ -98,7 +130,7 @@ function sendFiles (request, response) {
 		res.results = data;
 		//console.log(JSON.stringify(res));
         // console.log(data);
-		
+
         //Add message property to JSON
         if (data.length == 0 || data == undefined) {
             //res.push({"message":"These were no photos satisfying this query."});
@@ -108,10 +140,17 @@ function sendFiles (request, response) {
             //res.push({"message":"These are all of the photos satisfying this query."});
 			res.message = "These are all of the photos satisfying this query.";
         }
+
+
+
+
+
         //Write response
 		response.writeHead(200, {"Content-Type": "text/plain"});
         response.write(JSON.stringify(res));
         response.end();
+
+
     }
 
     //Closure
@@ -122,6 +161,68 @@ function sendFiles (request, response) {
             }
         });
     }
+}
+
+
+
+function update_tag(idNum, tag, type) {
+	var get_tags_sql = `SELECT tags, landmark from photoTags where idNum = ${idNum}`
+
+	db.all(get_tags_sql, dataCallback);
+
+	function dataCallback(err,data) {
+		if (type == 'delete') {
+			if (data[0].tags) {
+				var tags = data[0].tags;
+				tags = tags.split(",");
+				tag = String(decodeURIComponent(tag));
+				var k = tags.indexOf(`${tag}`);
+
+				if (k != -1) {
+					tags.splice(k,1);
+				}
+
+				tags = tags.join(',');
+
+				tags = String(tags);
+				var update_db = `UPDATE photoTags SET tags="${tags}" where idNum = ${idNum}`;
+			}
+
+			if (data[0].landmark) {
+				landmark = data[0].landmark;
+				landmark = String(decodeURIComponent(landmark));
+				var update_db = `UPDATE photoTags SET landmark="" where idNum = ${idNum}`;
+			}
+		}
+
+		if (type == 'add') {
+			var tags = String(decodeURIComponent(data[0].tags));
+			var tags_split = tags.split(",");
+			var flag_add = 0;
+			for (var i = 0; i < tags_split.length; i++) {
+				if (tags_split[i] == tag) {
+					flag_add = 1;
+					console.log('already exists');
+				}
+			}
+
+			if (flag_add == 0) {
+				tags = tags + "," + tag
+			}
+			var update_db = `UPDATE photoTags SET tags="${tags}" where idNum = ${idNum}`;
+
+		}
+
+
+		db.all(update_db, dataCallback2);
+		function dataCallback2(err){
+			if (err) {
+				console.log(err);
+			}
+			console.log("tags after operation:");
+			console.log(tags);
+		}
+	}
 }
 
 
@@ -208,4 +309,4 @@ function handle_number(num)
 var finder = http.createServer(sendFiles);
 
 //Listen to Port
-finder.listen("56247");
+finder.listen("52513");
